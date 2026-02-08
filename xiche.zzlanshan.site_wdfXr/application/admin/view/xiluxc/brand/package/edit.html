@@ -1,0 +1,178 @@
+<style>
+    [v-cloak] {display: none;}
+    /*选择服务*/
+    .xilu-service .add-option{
+        width: 50px;
+        margin-bottom: 17px;
+    }
+    .xilu-service .add-option .input-group-addon{
+        color: #fff;
+        background-color: #2c3e50;
+    }
+    .xilu-service .panel .row{
+        margin: 5px 0;
+    }
+    .xilu-service .panel .xilu-service-tag{
+        background-color: #f8f8f8;
+        position: relative;
+        padding: 6px 10px;
+        display: inline-block;
+        margin-right: 10px;
+        text-align: center;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+</style>
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div id="app">
+        {if $row.shop_id}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Shop_id')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-shop_id" data-rule="required" min="0" data-source="xiluxc/brand/shop/selectpage" class="form-control selectpage" name="row[shop_id]" type="text" value="{$row.shop_id|htmlentities}">
+            </div>
+        </div>
+        {else /}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Brand_id')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-brand_id" data-rule="required" min="0" data-field="brand_name"
+                       data-source="xiluxc/brand/brand_user/brand_selectpage"
+                       class="form-control selectpage" name="row[brand_id]" type="text" value="{$row.brand_id|htmlentities}">
+            </div>
+        </div>
+        {/if}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="{$row.name|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Sub_title')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-sub_title" data-rule="required" class="form-control" name="row[sub_title]" type="text" value="{$row.sub_title|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Image')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <div class="input-group">
+                    <input id="c-image" data-rule="required" class="form-control" size="50" name="row[image]" type="text" value="{$row.image|htmlentities}">
+                    <div class="input-group-addon no-border no-padding">
+                        <span><button type="button" id="faupload-image" class="btn btn-danger faupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                        <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                    </div>
+                    <span class="msg-box n-right" for="c-image"></span>
+                </div>
+                <ul class="row list-inline faupload-preview" id="p-image"></ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Salesprice')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-salesprice" data-rule="required" min="0" class="form-control" step="0.01" name="row[salesprice]" type="number" value="{$row.salesprice|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Vip_price')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-vip_price" data-rule="required" min="0" class="form-control" step="0.01" name="row[vip_price]" type="number" value="{$row.vip_price|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Original_price')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-original_price" data-rule="required" min="0" class="form-control" step="0.01" name="row[original_price]" type="number" value="{$row.original_price|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group xilu-service">
+            <label class="control-label col-xs-12 col-sm-2">{:__('包含服务')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <div class="input-group add-option">
+                    <span class="input-group-addon" @click="chooseService">选择服务</span>
+                </div>
+
+                <div class="panel panel-default" v-if="services.length>0">
+                    <div class="row">
+                        <table class="table table-responsive fieldlist" >
+                            <tr>
+                                <td>服务</td>
+                                <td>参与规格</td>
+                                <td>次数</td>
+                                <td></td>
+                            </tr>
+                            <tr class="form-inline" v-for="(v, j) in services" :key="j">
+                                <td>
+                                    <div class="xilu-service-tag" >
+                                        <input type="hidden" :name="'services['+j+'][shop_service_id]'" :value="v.id">
+                                        <input type="hidden" :name="'services['+j+'][service_id]'" :value="v.service_id">
+                                        {{v.service.name}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <select :name="'services['+j+'][service_price_id]'" class="form-control">
+                                            <option v-for="price in v.service_price" :value="price.id" :selected="v.service_price_id===price.id">{{price.title}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" :name="'services['+j+'][use_count]'" class="form-control" :value="v.use_count">
+                                    </div>
+                                </td>
+                                <td><span class="btn btn-sm btn-danger" @click="delService(j)"><i class="fa fa-times"></i></span></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Content')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <textarea id="c-content" data-rule="required" class="form-control editor" rows="50" name="row[content]">{$row.content|htmlentities}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('说明')}:</label>
+            <div class="col-xs-12 col-sm-8">
+            <textarea id="c-notice" data-rule="required" class="form-control editor" rows="50"
+                      name="row[notice]">{$row.notice|htmlentities}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+            <div class="col-xs-12 col-sm-8">
+
+                <div class="radio">
+                {foreach name="statusList" item="vo"}
+                <label for="row[status]-{$key|htmlentities}"><input id="row[status]-{$key|htmlentities}" name="row[status]" type="radio" value="{$key|htmlentities}" {in name="key" value="$row.status"}checked{/in} /> {$vo|htmlentities}</label>
+                {/foreach}
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-weigh" data-rule="required" min="0" class="form-control" name="row[weigh]" type="number" value="{$row.weigh|htmlentities}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Sales')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-sales" data-rule="required" min="0" class="form-control" name="row[sales]" type="number" value="{$row.sales|htmlentities}">
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

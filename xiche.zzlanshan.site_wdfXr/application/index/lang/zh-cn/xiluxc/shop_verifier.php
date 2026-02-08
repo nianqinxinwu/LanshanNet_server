@@ -1,0 +1,36 @@
+<?php
+
+return [
+    'Id'            => 'ID',
+    'Username'      => '用户名',
+    'Mobile'        => '手机号',
+    'Password'      => '密码',
+    'Salt'          => '密码盐',
+    'Status'        => '状态',
+    'Status hidden' => '隐藏',
+    'Set status to hidden'=> '设为隐藏',
+    'Status normal' => '正常',
+    'Set status to normal'=> '设为正常',
+    'Shop_id'       => '所属门店',
+    'Createtime'    => '创建时间',
+    'Updatetime'    => '更新时间',
+
+
+    'All'                                                    => '全部',
+    'Del'                                                    => '删除',
+    'Recycle bin'                                            => '回收站',
+    'Click to search %s'                                    => '点击搜索 %s',
+    'Click to toggle'                                       => '点击切换',
+    'Restore'                                               => '还原',
+    'Restore all'                                           => '还原全部',
+    'Destroy'                                               => '销毁',
+    'Destroy all'                                           => '清空回收站',
+    'Nothing need restore'                                  => '没有需要还原的数据',
+    'No rows were inserted'                                 => '未插入任何行',
+    'No rows were deleted'                                  => '未删除任何行',
+    'No rows were updated'                                  => '未更新任何行',
+    'Are you sure you want to delete the %s selected item?' => '确定删除选中的 %s 项?',
+    'Are you sure you want to delete this item?'            => '确定删除此项?',
+    'Are you sure you want to delete or turncate?'          => '确定删除或清空?',
+    'Are you sure you want to truncate?'                    => '确定清空?',
+];

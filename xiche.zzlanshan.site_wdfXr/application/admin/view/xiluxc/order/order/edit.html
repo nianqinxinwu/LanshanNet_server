@@ -1,0 +1,211 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">买家信息</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">头像:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <img src="{$row.user.avatar ?? ''}" width="150px" class="form-control-static" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">昵称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.user.nickname ?? ''}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">手机号:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.user.mobile|htmlentities}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">产品信息</div>
+                <div class="panel-body">
+                    {if $row.type == 'service'}
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">门店:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.shop.name|htmlentities}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">服务图:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <img src="{$row.order_item.image|htmlentities}" width="150px" class="form-control-static" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">服务名称:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.title|htmlentities}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">服务规格:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.sku_text|htmlentities}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">商品价格:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.salesprice|htmlentities}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">会员价格:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.vip_price|htmlentities}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {else /}
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">门店:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.shop.name|htmlentities}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">套餐图:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <img src="{$row.order_item.image|htmlentities}" width="150px" class="form-control-static" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">套餐名称:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.title|htmlentities}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">套餐价格:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.salesprice|htmlentities}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">会员价格:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.order_item.vip_price|htmlentities}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">订单信息</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">订单号:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.order_no|htmlentities}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">支付金额:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.pay_fee|htmlentities}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">优惠金额:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.coupon_discount_fee|htmlentities}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">下单时间:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{:datetime($row.createtime)}</p>
+                            </div>
+                        </div>
+                        {if $row.type == 'service'}
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">状态:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{$row.state_text|htmlentities}</p>
+                                </div>
+                            </div>
+                            {if $row.state=='0'}
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">支付时间:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <p class="form-control-static">{:datetime($row.paid_time)}</p>
+                                </div>
+                            </div>
+                            {/if}
+                        {else /}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">状态:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$row.status=='paid'?'已支付':"未支付"}</p>
+                            </div>
+                        </div>
+                        {if $row.status=='paid'}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">支付时间:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{:datetime($row.paid_time)}</p>
+                            </div>
+                        </div>
+                        {/if}
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    {if $row.state == '0'}-->
+    <!--    <div class="form-group">-->
+    <!--        <label class="control-label col-xs-12 col-sm-2">{:__('Pay_status')}:</label>-->
+    <!--        <div class="col-xs-12 col-sm-8">-->
+
+    <!--            <div class="radio">-->
+    <!--                {foreach name="statusList" item="vo"}-->
+    <!--                <label for="row[status]-{$key|htmlentities}"><input id="row[status]-{$key|htmlentities}" name="row[status]" type="radio" value="{$key|htmlentities}" {in name="key" value="$row.status"}checked{/in} /> {$vo|htmlentities}</label>-->
+    <!--                {/foreach}-->
+    <!--            </div>-->
+
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <!--    <div class="form-group layer-footer">-->
+    <!--        <label class="control-label col-xs-12 col-sm-2"></label>-->
+    <!--        <div class="col-xs-12 col-sm-8">-->
+    <!--            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>-->
+    <!--            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    {/if}-->
+</form>

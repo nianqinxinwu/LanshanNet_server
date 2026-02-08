@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'Shop_id'        => '门店',
+    'Name'           => '名称',
+    'Use_start_time' => '使用开始时间',
+    'Use_end_time'   => '使用结束时间',
+    'Max_count'      => '发行数量',
+    'At_least'       => '使用门槛',
+    'Type'           => '类型',
+    'Type 1'         => '满减',
+    'Type 2'         => '折扣',
+    'Discount'       => '折扣（折扣类型必填）',
+    'Money'          => '减免金额',
+    'Freight_type'   => '发放形式',
+    'Freight_type 1' => '手动领取',
+    'Freight_type 2' => '注册赠送',
+    'Range_type'     => '使用类型',
+    'Range_type 1'   => '服务',
+    'Range_type 2'   => '套餐',
+    'Range_status'   => '使用范围',
+    'Range_status 0' => '限定',
+    'Range_status 1' => '通用',
+    'Status'         => '状态',
+    'Status hidden'  => '下架',
+    'Set status to hidden'=> '设为下架',
+    'Status normal'  => '上架',
+    'Set status to normal'=> '设为上架',
+    'Createtime'     => '创建时间',
+    'Updatetime'     => '更新时间'
+];

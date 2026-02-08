@@ -1,0 +1,2 @@
+[2026-02-04 14:30:00] {"event":"verify_webhook","client_key":"aw60ohtzulw9rk9r","from_user_id":"","content":{"challenge":1770186599},"log_id":"202602041429592C1B2011E81B2F0C3023","event_id":""}
+[2026-02-04 14:31:15] {"event":"verify_webhook","client_key":"aw60ohtzulw9rk9r","from_user_id":"","content":{"challenge":1770186675},"log_id":"20260204143115F14E8E402B43430C3AD9","event_id":""}

@@ -1,0 +1,363 @@
+<style type="text/css">
+    .sm-st {
+        background: #fff;
+        padding: 20px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        margin-bottom: 20px;
+    }
+
+    .sm-st-icon {
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+        background: #eee;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        float: left;
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    .sm-st-info {
+        padding-top: 2px;
+    }
+
+    .sm-st-info span {
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .orange {
+        background: #fa8564 !important;
+    }
+
+    .tar {
+        background: #45cf95 !important;
+    }
+
+    .sm-st .green {
+        background: #86ba41 !important;
+    }
+
+    .pink {
+        background: #AC75F0 !important;
+    }
+
+    .yellow-b {
+        background: #fdd752 !important;
+    }
+
+    .stat-elem {
+
+        background-color: #fff;
+        padding: 18px;
+        border-radius: 40px;
+
+    }
+
+    .stat-info {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: -5px;
+        padding: 8px;
+        -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+        font-style: italic;
+    }
+
+    .stat-icon {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .st-red {
+        background-color: #F05050;
+    }
+
+    .st-green {
+        background-color: #27C24C;
+    }
+
+    .st-violet {
+        background-color: #7266ba;
+    }
+
+    .st-blue {
+        background-color: #23b7e5;
+    }
+
+    .stats .stat-icon {
+        color: #28bb9c;
+        display: inline-block;
+        font-size: 26px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+        float: left;
+    }
+
+    .stat {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+
+    .stat .value {
+        font-size: 20px;
+        line-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    .stat .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 5px 0;
+    }
+
+    .stat.lg .value {
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    .stat-col {
+        margin: 0 0 10px 0;
+    }
+
+    .stat.lg .name {
+        font-size: 16px;
+    }
+
+    .stat-col .progress {
+        height: 2px;
+    }
+
+    .stat-col .progress-bar {
+        line-height: 2px;
+        height: 2px;
+    }
+
+    .item {
+        padding: 30px 0;
+    }
+
+
+    #statistics .panel {
+        min-height: 150px;
+    }
+
+    #statistics .panel h5 {
+        font-size: 14px;
+    }
+
+    .z_data_row {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .z_data_row .data_item {
+        width: 16.5%;
+        padding: 15px 0 0;
+        text-align: center;
+    }
+
+    .z_data_row .num {
+        margin: 0 0 10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .z_title1 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .panel{
+        background-color: unset;
+        box-shadow: unset;
+    }
+
+    .z_data_box{
+        margin: 0 0 15px;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    .mr5{
+        margin-right: 5px;
+    }
+</style>
+<!-- style="background-color: unset;" -->
+<div class="panel panel-default panel-intro">
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+
+                <div class="z_data_box">
+                    <div class="z_title1">今日数据</div>
+                    <div class="z_data_row">
+                        <div class="data_item">
+                            <div class="num">
+                                {$user_today_count|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增会员数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_service_count|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增服务订单')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5">¥</span>{$order_sum|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增订单总金额')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                {$recharge_count|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增充值订单数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_package_count|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增套餐订单')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="z_data_box">
+                    <div class="z_title1">本周数据</div>
+                    <div class="z_data_row">
+                        <div class="data_item">
+                            <div class="num">
+                                {$user_today_count2|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增会员数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_service_count2|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增服务订单')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5">¥</span>{$order_sum2|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增订单总金额')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                {$recharge_count2|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增充值订单数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_package_count2|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增套餐订单')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="z_data_box">
+                    <div class="z_title1">本月数据</div>
+                    <div class="z_data_row">
+                        <div class="data_item">
+                            <div class="num">
+                                {$user_today_count3|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增会员数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_service_count3|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增服务订单')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5">¥</span>{$order_sum3|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增订单总金额')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                {$recharge_count3|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增充值订单数')}
+                            </div>
+                        </div>
+
+                        <div class="data_item">
+                            <div class="num">
+                                <span class="mr5"></span>{$order_package_count3|htmlentities}
+                            </div>
+                            <div>
+                                {:__('新增套餐订单')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

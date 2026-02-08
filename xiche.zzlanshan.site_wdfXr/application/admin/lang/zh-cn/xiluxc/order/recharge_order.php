@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'User_id'              => '下单用户',
+    'Platform'             => '下单平台',
+    'Platform 1'           => 'wxmini',
+    'Platform 2'           => 'app',
+    'Recharge_id'          => '金额id',
+    'Order_no'             => '订单号',
+    'Order_trade_no'       => '交易单号',
+    'Pay_type'             => '支付类型',
+    'Pay_type 1'           => '微信',
+    'Pay_type 2'           => '支付宝',
+    'Pay_type 3'           => '后台人工',
+    'Pay_fee'              => '支付金额',
+    'Pay_status'           => '支付状态',
+    'Pay_status unpaid'    => '待支付',
+    'Pay_status paid'      => '已支付',
+    'Paytime'              => '支付时间',
+    'Trade_no'             => '三方单号',
+    'Recharge_money'       => '充值金额',
+    'Recharge_extra_money' => '充值赠送金额',
+    'Recharge_total_money' => '到账金额',
+    'Real_price'           => '实际支付金额',
+    'Ip'                   => '下单id',
+    'Createtime'           => '创建时间',
+    'Updatetime'           => '更新时间',
+    'Admin_id'             => '管理员',
+    'Shop_id'              => '门店'
+];

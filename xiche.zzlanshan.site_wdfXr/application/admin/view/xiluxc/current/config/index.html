@@ -1,0 +1,206 @@
+<style type="text/css">
+    @media (max-width: 375px) {
+        .edit-form tr td input {
+            width: 100%;
+        }
+
+        .edit-form tr th:first-child, .edit-form tr td:first-child {
+            width: 20%;
+        }
+
+        .edit-form tr th:nth-last-of-type(-n+2), .edit-form tr td:nth-last-of-type(-n+2) {
+            display: none;
+        }
+    }
+
+    .edit-form table > tbody > tr td a.btn-delcfg {
+        visibility: hidden;
+    }
+
+    .edit-form table > tbody > tr:hover td a.btn-delcfg {
+        visibility: visible;
+    }
+
+    @media (max-width: 767px) {
+        .edit-form table tr th:nth-last-child(-n + 2), .edit-form table tr td:nth-last-child(-n + 2) {
+            display: none;
+        }
+
+        .edit-form table tr td .msg-box {
+            display: none;
+        }
+    }
+</style>
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-basic" data-toggle="tab">{:__('基础配置')}</a></li>
+            <li class=""><a href="#tab-platform" data-toggle="tab">{:__('平台配置')}</a></li>
+            <li class=""><a href="#tab-payment" data-toggle="tab">{:__('支付配置')}</a></li>
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <!--@formatter:off-->
+            <div class="tab-pane fade active in" id="tab-basic">
+                <div class="row" style="margin-top:15px;">
+
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-green-gradient">
+                            <div class="inner">
+                                <h5>分销设置</h5>
+                                <p>配置分销基本信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'distribution','group'=>'basic','title'=>'分销设置'])}" class="small-box-footer btn-dialog" data-title="分销设置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow-gradient">
+                            <div class="inner">
+                                <h5>提现设置</h5>
+                                <p>配置提现规则</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'apply','group'=>'basic','title'=>'提现设置'])}" class="small-box-footer btn-dialog" data-title="提现设置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-purple-gradient">
+                            <div class="inner">
+                                <h5>分享设置</h5>
+                                <p>配置分享信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'share','group'=>'basic','title'=>'分享设置'])}" class="small-box-footer btn-dialog" data-title="分享设置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-blue-gradient">
+                            <div class="inner">
+                                <h5>网站配置</h5>
+                                <p>配置默认网站信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'shopinfo','group'=>'basic','title'=>'网站配置'])}" class="small-box-footer btn-dialog" data-title="网站配置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-blue-active">
+                            <div class="inner">
+                                <h5>会员配置</h5>
+                                <p>配置默认会员信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'user','group'=>'basic','title'=>'会员配置'])}" class="small-box-footer btn-dialog" data-title="会员配置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-fuchsia-active">
+                            <div class="inner">
+                                <h5>地图配置</h5>
+                                <p>配置web服务Api地图信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'map','group'=>'basic','title'=>'地图配置'])}"
+                               class="small-box-footer btn-dialog" data-title="地图配置">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--@formatter:on-->
+            <div class="tab-pane fade in" id="tab-platform">
+                <div class="row" style="margin-top:15px;">
+
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-green-gradient">
+                            <div class="inner">
+                                <h5>微信公众号</h5>
+                                <p>配置微信公众号相关信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'wxpublic','group'=>'platform','title'=>'微信公众号'])}" class="small-box-footer btn-dialog" data-title="微信公众号">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow-gradient">
+                            <div class="inner">
+                                <h5>微信小程序</h5>
+                                <p>配置微信小程序相关信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'wxmini','group'=>'basic','title'=>'微信小程序'])}" class="small-box-footer btn-dialog" data-title="微信小程序">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-purple-gradient">
+                            <div class="inner">
+                                <h5>微信开放平台</h5>
+                                <p>配置信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a
+                                    href="{:url('xiluxc/current.config/config',['name'=>'wxopen','group'=>'basic','title'=>'微信开放平台'])}" class="small-box-footer btn-dialog" data-title="微信开放平台">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade in" id="tab-payment">
+                <div class="row" style="margin-top:15px;">
+                    <div class="col-lg-3 col-xs-4">
+                        <!-- small box -->
+                        <div class="small-box bg-green-gradient">
+                            <div class="inner">
+                                <h5>微信支付</h5>
+                                <p>配置微信支付商户信息</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a href="{:url('xiluxc/current.config/config',['name'=>'wxpayment','group'=>'payment','title'=>'微信支付'])}" class="small-box-footer btn-dialog" data-title="微信支付">立即设置<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

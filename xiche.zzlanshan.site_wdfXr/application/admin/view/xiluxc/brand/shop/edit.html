@@ -1,0 +1,216 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">账号信息</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="c-nickname" class="control-label col-xs-12 col-sm-2">{:__('Nickname')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-nickname" data-rule="required" class="form-control" name="user[nickname]"
+                                   type="text" value="{$user.nickname|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-mobile" class="control-label col-xs-12 col-sm-2">{:__('Mobile')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-mobile" data-rule="mobile" class="form-control" name="user[mobile]"
+                                   type="text" value="{$user.mobile|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-password" class="control-label col-xs-12 col-sm-2">{:__('Password')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-password" data-rule="password" class="form-control" name="user[password]" type="password" value="" autocomplete="new-password" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">门店信息</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="c-name" class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text"
+                                   value="{$row.name|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-connector" class="control-label col-xs-12 col-sm-2">{:__('Connector')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-connector" data-rule="required" class="form-control" name="row[connector]"
+                                   type="text" value="{$row.connector|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-concat_mobile" class="control-label col-xs-12 col-sm-2">{:__('Concat_mobile')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-concat_mobile" data-rule="required" class="form-control"
+                                   name="row[concat_mobile]" type="text" value="{$row.concat_mobile|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('营业时间')}:</label>
+                        <div class="col-xs-12 col-sm-4">
+                            <input id="c-starttime" data-rule="required" class="form-control datetimepicker" data-date-format="HH:mm" data-use-current="true"
+                                   name="row[starttime]" type="text" value="{$row.starttime|htmlentities}">
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <input id="c-endtime" data-rule="required" class="form-control datetimepicker" name="row[endtime]" data-date-format="HH:mm" data-use-current="true" type="text" value="{$row.endtime|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('Type')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="radio">
+                                {foreach name="typeList" item="vo"}
+                                <label for="row[type]-{$key|htmlentities}"><input id="row[type]-{$key|htmlentities}" name="row[type]" type="radio" value="{$key|htmlentities}" {in name="key" value="$row.type"}checked{/in} /> {$vo|htmlentities}</label>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-favisible="type=2">
+                        <label for="c-connector" class="control-label col-xs-12 col-sm-2">{:__('Brand_id')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-brand_id" data-rule="required" data-primary-key="user_id"
+                                   data-field="brand_name"
+                                   class="form-control selectpage"
+                                   data-source="xiluxc/brand/brand_user/selectpage" name="row[brand_id]" type="text"
+                                   value="{$row.brand_id|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-connector" class="control-label col-xs-12 col-sm-2">{:__('Tag_ids')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input id="c-tag_ids" data-rule=""
+                                   data-params='{"custom[type]":"shop"}'
+                                   class="form-control selectpage"
+                                   data-multiple="true"
+                                   data-source="xiluxc/current/tag/selectpage" name="row[tag_ids]" type="text"
+                                   value="{$tag_ids|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-license_image" class="control-label col-xs-12 col-sm-2">{:__('License_image') }:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group">
+                                <input id="c-license_image" data-rule="" class="form-control" size="50" name="row[license_image]"
+                                       type="text" value="{$row.license_image|htmlentities}">
+                                <div class="input-group-addon no-border no-padding">
+                                    <span><button type="button" id="faupload-license_image" class="btn btn-danger faupload" data-input-id="c-license_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-license_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    <span><button type="button" id="fachoose-license_image" class="btn btn-primary fachoose" data-input-id="c-license_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                </div>
+                                <span class="msg-box n-right" for="c-license_image"></span>
+                            </div>
+                            <ul class="row list-inline faupload-preview" id="p-license_image"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-image" class="control-label col-xs-12 col-sm-2">{:__('Image')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group">
+                                <input id="c-image" data-rule="" class="form-control" size="50" name="row[image]"
+                                       type="text" value="{$row.image|htmlentities}">
+                                <div class="input-group-addon no-border no-padding">
+                                    <span><button type="button" id="faupload-image" class="btn btn-danger faupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                </div>
+                                <span class="msg-box n-right" for="c-image"></span>
+                            </div>
+                            <ul class="row list-inline faupload-preview" id="p-image"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-image" class="control-label col-xs-12 col-sm-2">{:__('Images')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group">
+                                <input id="c-images" data-rule="" class="form-control" size="50" name="row[images]" type="text" value="{$row.images|htmlentities}">
+                                <div class="input-group-addon no-border no-padding">
+                                    <span><button type="button" id="faupload-images" class="btn btn-danger faupload" data-input-id="c-images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                </div>
+                                <span class="msg-box n-right" for="c-images"></span>
+                            </div>
+                            <ul class="row list-inline faupload-preview" id="p-images"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('地区')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            {:Form::cxselect('xiluxc/ajax/area', ['province','city','district'],
+                            ['province'=>$row.province_id, 'city'=>$row.city_id,'district'=>$row.district_id])}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('Address')}:</label>
+                        <div class="col-xs-12 col-sm-6">
+                            <input id="c-address" data-rule="required" class="form-control"
+                                   name="row[address]"
+                                   type="text" value="{$row.address|htmlentities}">
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <a class="btn btn-primary" data-input-id="c-address" data-lat-id="c-lat"
+                               data-lng-id="c-lng"
+                               data-toggle="addresspicker">地图选择</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('经纬度')}:</label>
+                        <div class="col-xs-12 col-sm-4">
+                            <input id="c-lat" data-rule="required" class="form-control" name="row[lat]"
+                                   placeholder="纬度" type="text" value="{$row.lat|htmlentities}">
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <input id="c-lng" data-rule="required" class="form-control" name="row[lng]"
+                                   placeholder="经度" type="text" value="{$row.lng|htmlentities}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-mobile" class="control-label col-xs-12 col-sm-2">{:__('Vip_rate')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group">
+                                <input aria-describedby="c-vip_rate" data-rule="integer,range(0~50)" class="form-control"
+                                       name="row[vip_rate]" type="number" value="{$row.account.vip_rate|htmlentities}">
+                                <span class="input-group-addon" id="c-vip_rate">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-mobile" class="control-label col-xs-12 col-sm-2">{:__('Rate')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group">
+                                <input aria-describedby="c-rate" data-rule="integer,range(0~50)" class="form-control" name="row[rate]" type="number" value="{$row.account.rate|htmlentities}">
+                                <span class="input-group-addon" id="c-rate">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-12 col-sm-2">{:__('Description')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <textarea id="c-description" data-rule="required" class="form-control editor" rows="8" name="row[description]" >{$row.description|htmlentities}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

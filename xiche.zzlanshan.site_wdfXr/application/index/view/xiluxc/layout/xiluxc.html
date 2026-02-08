@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="{$config.language|htmlentities}">
+<head>
+    <!-- 加载样式及META信息 -->
+    <meta charset="utf-8">
+    <title>{$title|default=''}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="never">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
+    <!-- Loading Bootstrap -->
+    <link href="__CDN__/assets/css/backend{$Think.config.app_debug?'':'.min'}.css?v={$Think.config.site.version|htmlentities}" rel="stylesheet">
+
+    <link href="__CDN__/assets/css/skins/skin-blue-light.css?v={$Think.config.site.version|htmlentities}" rel="stylesheet">
+    <style>
+        .media-left, .media-right, .media-body {
+            vertical-align: middle!important;
+        }
+
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="__CDN__/assets/js/html5shiv.js"></script>
+    <script src="__CDN__/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        var require = {
+            config:  {$config|json_encode}
+        };
+    </script>
+</head>
+{if !IS_DIALOG}
+<body class="sidebar-mini fixed skin-blue-light" id="tabs">
+
+<div class="wrapper">
+
+
+    <!-- 头部区域 -->
+    <header id="header" class="main-header">
+        <!-- Logo -->
+        <a href="javascript:;" class="logo">
+            <!-- 迷你模式下Logo的大小为50X50 -->
+            <span class="logo-mini">{$brand?$brand.brand_name:$shop.name}</span>
+            <!-- 普通模式下Logo -->
+            <span class="logo-lg">{$brand?$brand.brand_name:$shop.name}</span>
+        </a>
+
+        <!-- 顶部通栏样式 -->
+        <nav class="navbar navbar-static-top">
+
+            <!--第一级菜单-->
+            <div id="firstnav">
+                <!-- 边栏切换按钮-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">{:__('Toggle navigation')}</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="hidden-xs">
+                            <a href="__PUBLIC__" target="_blank"><i class="fa fa-home" style="font-size:14px;"></i> {:__('Home')}</a>
+                        </li>
+
+                        <!-- 账号信息下拉框 -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{$user.avatar|cdnurl|htmlentities}" class="user-image" alt="">
+                                <span class="hidden-xs">{$user.nickname|htmlentities}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="{$user.avatar|cdnurl|htmlentities}" class="img-circle" alt="">
+
+                                    <p>
+                                        {$user.nickname|htmlentities}
+                                        <small>{$user.logintime|date="Y-m-d H:i:s",###}</small>
+                                    </p>
+                                </li>
+                                <li class="user-body">
+                                    <div class="visible-xs">
+                                        <div class="pull-left">
+                                            <a href="__PUBLIC__" target="_blank"><i class="fa fa-home" style="font-size:14px;"></i> {:__('Home')}</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="javascript:;" data-type="all" class="wipecache"><i class="fa fa-trash fa-fw"></i> {:__('Wipe all cache')}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{:url('index/user/profile')}" class="btn btn-primary"><i class="fa fa-user"></i>
+                                            {:__('Profile')}</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{:url('index/user/logout')}" class="btn btn-danger"><i class="fa fa-sign-out"></i>
+                                            {:__('Logout')}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- 控制栏切换按钮 -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- 左侧菜单栏 -->
+    <aside class="main-sidebar">
+        {include file='xiluxc/common/xilunav' /}
+    </aside>
+
+    <!-- 主体内容区域 -->
+    <div class="content-wrapper tab-content tab-addtabs" style="overflow-y:auto;overflow-x: hidden">
+        <div class="tab-pane active">
+            <div id="main" role="main">
+                <div class="tab-content tab-addtabs">
+                    <div id="content">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                <!-- END RIBBON -->
+                                <div class="content">
+                                    {__CONTENT__}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- 右侧控制栏 -->
+    <div class="control-sidebar-bg"></div>
+
+</div>
+
+</body>
+{else /}
+<body class="inside-header inside-aside is-dialog" >
+
+<div id="main" role="main">
+    <div class="tab-content tab-addtabs">
+        <div id="content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="content">
+                        {__CONTENT__}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 加载JS脚本 -->
+<!--<script src="__CDN__/assets/js/require{$Think.config.app_debug?'':'.min'}.js" data-main="__CDN__/assets/js/require-xiluxc{$Think.config.app_debug?'':''}.js?v={$site.version|htmlentities}"></script>-->
+</body>
+{/if}
+<!-- 加载JS脚本 -->
+<script src="__CDN__/assets/js/require{$Think.config.app_debug?'':'.min'}.js"
+        data-main="__CDN__/assets/js/require-xiluxc{$Think.config.app_debug?'':''}.js?v={$site.version|htmlentities}"></script>
+<!-- 底部链接,默认隐藏 -->
+<footer class="main-footer hide">
+    <div class="pull-right hidden-xs">
+    </div>
+    <strong>Copyright &copy; 2017-2025 <a href="__PUBLIC__">{$site.name|htmlentities}</a>.</strong> All rights reserved.
+</footer>
+</html>

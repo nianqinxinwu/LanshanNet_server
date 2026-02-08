@@ -1,0 +1,153 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">基本信息</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">昵称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$user.nickname|htmlentities}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">手机号:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">{$user.mobile|htmlentities}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">审核信息</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">门店名:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {$row.name|htmlentities}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">门店图:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {foreach $row.images_text as $img}
+                                    <a href="{$img|cdnurl|htmlentities}" target="_blank"><img style="width:200px;" src="{$img|cdnurl|htmlentities}" /></a>
+                                    {/foreach}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">联系人名称:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {$row.connector|htmlentities}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">类型:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {$row.type==1?"普通店":"连锁店"}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">联系电话:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {$row.concat_mobile|htmlentities}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">门店介绍:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    {$row.description|htmlentities|html_entity_decode}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">营业执照:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <p class="form-control-static">
+                                    <img  class="preview-img" src="{$row.license_image|cdnurl|htmlentities}" width="80px" />
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {if $row.audit_status=='checked'}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">审核状态:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                {foreach name="auditStatusList" item="vo"}
+                <label for="row[audit_status]-{$key|htmlentities}"><input id="row[audit_status]-{$key|htmlentities}" name="row[audit_status]" type="radio" value="{$key|htmlentities}" {in name="key" value="$row.audit_status"}checked{/in} /> {$vo|htmlentities}</label>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+    <div class="form-group" data-favisible="audit_status='passed'" >
+        <label class="control-label col-xs-12 col-sm-2">{:__('会员卡费率')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input aria-describedby="c-vip_rate"  data-rule="required;range(0~50)" class="form-control"
+                       name="row[vip_rate]" type="number" value="">
+                <span class="input-group-addon" id="c-vip_rate">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" data-favisible="audit_status='passed'" >
+        <label class="control-label col-xs-12 col-sm-2">{:__('服务费率')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input aria-describedby="c-rate"  data-rule="required;range(0~50)" class="form-control"
+                       name="row[rate]" type="number" value="">
+                <span class="input-group-addon" id="c-rate">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" data-favisible="audit_status='failed'">
+        <label class="control-label col-xs-12 col-sm-2">{:__('未通过理由')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-refuse_reason" data-rule="required" class="form-control" rows="8" name="row[refuse_reason]"
+            >{$row.refuse_reason|htmlentities}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+    {/if}
+</form>

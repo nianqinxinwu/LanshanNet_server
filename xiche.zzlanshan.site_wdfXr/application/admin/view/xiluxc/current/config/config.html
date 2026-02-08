@@ -1,0 +1,516 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    {switch name="name"}
+        {case value="distribution"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('是否开启分销')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    {:Form::switcher('row[distribution_status]', $row.distribution_status ?? 1, ['color'=>'success'])}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('分销设置')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    {:Form::radios('row[distribution_type]', $distributionModuleList, $row.distribution_type ?? '1', ['data-rule'=>'required'])}
+                </div>
+            </div>
+
+            <div class="form-group" data-favisible="distribution_type=1">
+                <label class="control-label col-xs-12 col-sm-2">{:__('一级返佣比例')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-distribution_one_rate" data-rule="integer,range(0~100)" class="form-control" name="row[distribution_one_rate]" type="text" value="{$row.distribution_one_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-distribution_one_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=1">
+                <label class="control-label col-xs-12 col-sm-2">{:__('二级返佣比例')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-distribution_two_rate"  data-rule="integer,range(0~100)" class="form-control" name="row[distribution_two_rate]" type="text" value="{$row.distribution_two_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-distribution_two_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('服务一级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-service_distribution_one_rate" data-rule="integer,range(0~100)"
+                               class="form-control" name="row[service_distribution_one_rate]" type="text" value="{$row.service_distribution_one_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-service_distribution_one_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('服务二级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-service_distribution_two_rate"  data-rule="integer,range(0~100)" class="form-control" name="row[service_distribution_two_rate]" type="text" value="{$row.service_distribution_two_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-service_distribution_two_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('套餐一级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-package_distribution_one_rate" data-rule="integer,range(0~100)"
+                               class="form-control" name="row[package_distribution_one_rate]" type="text" value="{$row.package_distribution_one_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-package_distribution_one_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('套餐二级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-package_distribution_two_rate"  data-rule="integer,range(0~100)" class="form-control" name="row[package_distribution_two_rate]" type="text" value="{$row.package_distribution_two_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-package_distribution_two_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('会员卡一级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-vip_distribution_one_rate" data-rule="integer,range(0~100)"
+                               class="form-control" name="row[vip_distribution_one_rate]" type="text" value="{$row.vip_distribution_one_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-vip_distribution_one_rate">%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" data-favisible="distribution_type=2">
+                <label class="control-label col-xs-12 col-sm-2">{:__('会员卡二级返佣')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input aria-describedby="c-vip_distribution_two_rate"  data-rule="integer,range(0~100)"
+                               class="form-control" name="row[vip_distribution_two_rate]" type="text" value="{$row.vip_distribution_two_rate ?? '0'}">
+                        <span class="input-group-addon" id="c-vip_distribution_two_rate">%</span>
+                    </div>
+                </div>
+            </div>
+        {/case}
+        {case value="apply"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('是否开启提现')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    {:Form::switcher('row[apply_status]', $row.apply_status ?? '1', ['color'=>'success'])}
+                </div>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label class="control-label col-xs-12 col-sm-2">{:__('手续费')}:</label>-->
+<!--                <div class="col-xs-12 col-sm-8">-->
+
+<!--                    <div class="input-group">-->
+<!--                        <input aria-describedby="c-apply_rate" data-rule="integer,range(0~1000)" class="form-control" name="row[apply_rate]" min="0" type="number" value="{$row.apply_rate ?? '0'}">-->
+<!--                        <span class="input-group-addon" id="c-apply_rate">‰</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('最低提现金额')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-apply_small_money" class="form-control" data-rule="integer,range(1~)" name="row[apply_small_money]" min="1" type="number" value="{$row.apply_small_money ?? '1'}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('最高提现金额')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-apply_large_money" class="form-control" data-rule="integer,range(1~)" name="row[apply_large_money]" min="1" type="number" value="{$row.apply_large_money ?? '1'}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('每日提现次数')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-apply_daily_num" class="form-control" data-rule="integer,range(1~)" name="row[apply_daily_num]" min="1" type="number" value="{$row.apply_daily_num ?? '1'}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('提现规则')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <textarea id="c-apply_rule" class="form-control" data-rule="" rows="8" name="row[apply_rule]">{$row.apply_rule ?? ''}</textarea>
+                </div>
+            </div>
+        {/case}
+        {case value="share"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('分享标题')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-share_title" class="form-control" name="row[share_title]" type="text" value="{$row.share_title ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('分享图片')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-share_image" data-rule="" class="form-control" size="50" name="row[share_image]" type="text" value="{$row.share_image ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-share_image" class="btn btn-danger faupload" data-input-id="c-share_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-share_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-share_image" class="btn btn-primary fachoose" data-input-id="c-share_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-share_image"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-share_image"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('分享描述')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-share_description" class="form-control" name="row[share_description]" type="text" value="{$row.share_description ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('海报文案')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <textarea id="c-poster_text" class="form-control" name="row[poster_text]" rows="5">{$row.poster_text ?? ''}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('海报背景图')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-poster_image" data-rule="" class="form-control" size="50" name="row[poster_image]" type="text" value="{$row.poster_image ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-poster_image" class="btn btn-danger faupload" data-input-id="c-poster_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-poster_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-poster_image" class="btn btn-primary fachoose" data-input-id="c-poster_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-poster_image"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-poster_image"></ul>
+                </div>
+            </div>
+        {/case}
+
+        {case value="shopinfo"}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">基础配置</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('积分抵扣比例')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="input-group">
+                                        <input aria-describedby="c-platform_rate"  data-rule="integer,range(0~100)"
+                                               class="form-control" name="row[score_rate]" type="number" value="{$row.score_rate ?? '0'}">
+                                        <span class="input-group-addon" id="c-score_rate">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('公司LOGO')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="input-group">
+                                        <input id="c-logo" data-rule="" class="form-control" size="50" name="row[logo]" type="text" value="{$row.logo ?? ''}">
+                                        <div class="input-group-addon no-border no-padding">
+                                            <span><button type="button" id="faupload-logo" class="btn btn-danger faupload" data-input-id="c-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-logo"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                            <span><button type="button" id="fachoose-logo" class="btn btn-primary fachoose" data-input-id="c-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                        </div>
+                                        <span class="msg-box n-right" for="c-logo"></span>
+                                    </div>
+                                    <ul class="row list-inline faupload-preview" id="p-logo"></ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('聚合数据key')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+
+                                    <input aria-describedby="c-juhe_key" class="form-control" name="row[juhe_key]"
+                                           type="text" value="{$row.juhe_key ?? ''}">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">文章配置</div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('用户协议')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <input id="c-user_agreement" data-rule="required" class="form-control selectpage"
+                                           data-source="xiluxc/current/singlepage/selectpage"
+                                           name="row[user_agreement]" type="text" value="{$row.user_agreement ?? 0}">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('隐私协议')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <input id="c-privacy_agreement" data-rule="required" class="form-control selectpage" data-source="xiluxc/current/singlepage/selectpage" name="row[privacy_agreement]" type="text" value="{$row.privacy_agreement ?? 0}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('品牌入驻说明')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <input id="c-brand_agreement" data-rule="required" class="form-control selectpage"
+                                           data-source="xiluxc/current/singlepage/selectpage" name="row[brand_agreement]" type="text" value="{$row.brand_agreement ?? 0}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-2">{:__('商家入驻说明')}:</label>
+                                <div class="col-xs-12 col-sm-8">
+                                    <input id="c-shop_agreement" data-rule="required" class="form-control selectpage"
+                                           data-source="xiluxc/current/singlepage/selectpage" name="row[shop_agreement]" type="text" value="{$row.shop_agreement ?? 0}">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/case}
+        {case value="user"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('默认昵称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-nickname" class="form-control" name="row[nickname]" type="text" value="{$row.nickname ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('默认头像')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-avatar" data-rule="" class="form-control" size="50" name="row[avatar]" type="text" value="{$row.avatar ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-avatar" class="btn btn-danger faupload" data-input-id="c-avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-avatar" class="btn btn-primary fachoose" data-input-id="c-avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-avatar"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-avatar"></ul>
+                </div>
+            </div>
+        {/case}
+        {case value="wxpublic"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('公众号名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_name" class="form-control" name="row[wxpublic_name]" type="text" value="{$row.wxpublic_name ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('公众号头像')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-wxpublic_avatar" data-rule="" class="form-control" size="50" name="row[wxpublic_avatar]" type="text" value="{$row.wxpublic_avatar ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-wxpublic_avatar" class="btn btn-danger faupload" data-input-id="c-wxpublic_avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-wxpublic_avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-wxpublic_avatar" class="btn btn-primary fachoose" data-input-id="c-wxpublic_avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-wxpublic_avatar"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-wxpublic_avatar"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('公众号二维码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-wxpublic_code" data-rule="" class="form-control" size="50" name="row[wxpublic_code]" type="text" value="{$row.wxpublic_code ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-wxpublic_code" class="btn btn-danger faupload" data-input-id="c-wxpublic_code" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-wxpublic_code"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-wxpublic_code" class="btn btn-primary fachoose" data-input-id="c-wxpublic_code" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-wxpublic_code"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-wxpublic_code"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPID')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_appid" class="form-control" name="row[wxpublic_appid]" type="text" value="{$row.wxpublic_appid ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPSECRET')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_secret" class="form-control" name="row[wxpublic_secret]" type="text" value="{$row.wxpublic_secret ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('网页授权回调地址')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_site" class="form-control" name="row[wxpublic_site]" type="text" value="{$row.wxpublic_site ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('令牌(Token)')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_token" class="form-control" name="row[wxpublic_token]" type="text" value="{$row.wxpublic_token ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('消息加解密密钥')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxpublic_encryption_key" class="form-control" name="row[wxpublic_encryption_key]" type="text" value="{$row.wxpublic_encryption_key ?? ''}">
+                </div>
+            </div>
+        {/case}
+        {case value="wxmini"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('小程序名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxmini_name" class="form-control" name="row[wxmini_name]" type="text" value="{$row.wxmini_name ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('小程序头像')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-wxmini_avatar" data-rule="" class="form-control" size="50" name="row[wxmini_avatar]" type="text" value="{$row.wxmini_avatar ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-wxmini_avatar" class="btn btn-danger faupload" data-input-id="c-wxmini_avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-wxmini_avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-wxmini_avatar" class="btn btn-primary fachoose" data-input-id="c-wxmini_avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-wxmini_avatar"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-wxmini_avatar"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('小程序二维码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-wxmini_code" data-rule="" class="form-control" size="50" name="row[wxmini_code]" type="text" value="{$row.wxmini_code ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-wxmini_code" class="btn btn-danger faupload" data-input-id="c-wxmini_code" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-wxmini_code"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                            <span><button type="button" id="fachoose-wxmini_code" class="btn btn-primary fachoose" data-input-id="c-wxmini_code" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-wxmini_code"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-wxmini_code"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPID')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxmini_appid" class="form-control" name="row[wxmini_appid]" type="text" value="{$row.wxmini_appid ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPSECRET')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxmini_secret" class="form-control" name="row[wxmini_secret]" type="text" value="{$row.wxmini_secret ?? ''}">
+                </div>
+            </div>
+        {/case}
+        {case value="map"}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('地图类型')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                {:Form::radios('row[maptype]', ['baidu'=>'百度地图', 'tencent'=>'腾讯地图','regeo'=>'高德地图'], $row.maptype ?? 'tencent', ['data-rule'=>'required'])}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('百度地图key')}:</label>
+            <div class="col-xs-12 col-sm-8">
+
+                <input id="c-baidukey" class="form-control" name="row[baidukey]" type="text" value="{$row.baidukey ?? ''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('腾讯地图key')}:</label>
+            <div class="col-xs-12 col-sm-8">
+
+                <input id="c-tencentkey" class="form-control" name="row[tencentkey]" type="text" value="{$row.tencentkey ?? ''}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('高德地图key')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-amapkey" class="form-control" name="row[amapkey]" type="text" value="{$row.amapkey ?? ''}">
+            </div>
+        </div>
+        {/case}
+        {case value="wxopen"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPID')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxopen_appid" class="form-control" name="row[wxopen_appid]" type="text" value="{$row.wxopen_appid ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('APPSECRET')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-wxopen_secret" class="form-control" name="row[wxopen_secret]" type="text" value="{$row.wxopen_secret ?? ''}">
+                </div>
+            </div>
+        {/case}
+        {case value="wxpayment"}
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('商户号')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-mch_id" class="form-control" name="row[mch_id]" type="text" value="{$row.mch_id ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('支付密钥')}:</label>
+                <div class="col-xs-12 col-sm-8">
+
+                    <input id="c-mch_key" class="form-control" name="row[mch_key]" type="text" value="{$row.mch_key ?? ''}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('商户证书')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-apiclient_cert" data-rule="" class="form-control" name="row[apiclient_cert]" type="text" value="{$row.apiclient_cert ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-apiclient_cert" class="btn btn-danger faupload" data-input-id="c-apiclient_cert" data-multiple="false" data-preview-id="p-apiclient_cert"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-apiclient_cert"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-apiclient_cert"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-2">{:__('商户key证书')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="c-apiclient_key" data-rule="" class="form-control" name="row[apiclient_key]" type="text" value="{$row.apiclient_key ?? ''}">
+                        <div class="input-group-addon no-border no-padding">
+                            <span><button type="button" id="faupload-apiclient_key" class="btn btn-danger faupload" data-input-id="c-apiclient_key" data-multiple="false" data-preview-id="p-apiclient_key"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                        </div>
+                        <span class="msg-box n-right" for="c-apiclient_key"></span>
+                    </div>
+                    <ul class="row list-inline faupload-preview" id="p-apiclient_key"></ul>
+                </div>
+            </div>
+        {/case}
+    {/switch}
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

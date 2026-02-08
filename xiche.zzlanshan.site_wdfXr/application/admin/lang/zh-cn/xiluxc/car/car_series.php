@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'Name'          => '车系名',
+    'Brand_id'      => '品牌',
+    'Levelid'       => '车系类型',
+    'Levelid 1'     => '微型车',
+    'Levelid 2'     => '小型车',
+    'Levelid 3'     => '紧凑型车',
+    'Levelid 4'     => '中型车',
+    'Levelid 5'     => '中大型车',
+    'Levelid 6'     => '大型车',
+    'Levelid 7'     => '跑车',
+    'Levelid 8'     => 'MPV',
+    'Levelid 11'    => '微面',
+    'Levelid 12'    => '微卡',
+    'Levelid 13'    => '轻客',
+    'Levelid 14'    => '低端皮卡',
+    'Levelid 15'    => '高端皮卡',
+    'Levelid 16'    => '小型SUV',
+    'Levelid 17'    => '紧凑型SUV',
+    'Levelid 18'    => '中型SUV',
+    'Levelid 19'    => '中大型SUV',
+    'Levelid 20'    => '大型SUV',
+    'Levelid 21'    => '紧凑型MPV',
+    'Levelname'     => '车系类型名称',
+    'Status'        => '状态',
+    'Status hidden' => '隐藏',
+    'Set status to hidden'=> '设为隐藏',
+    'Status normal' => '显示',
+    'Set status to normal'=> '设为显示',
+    'Weigh'         => '排序'
+];

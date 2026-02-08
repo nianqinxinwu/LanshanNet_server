@@ -1,0 +1,317 @@
+<style>
+    .order-title{
+        height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        color: #666;
+    }
+    .order-title span{
+        padding-right:15px;
+    }
+    .order_block{
+        border:2px solid rgba(240, 240, 240, 1);
+    }
+    .order_part_top{
+        border-bottom: 1px solid rgba(240, 240, 240, 1);
+    }
+    .order_part_left{
+        padding: 28px 12px 0 31px;
+    }
+    .order-status-tip{
+        font-size: 20px;
+        margin-bottom: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+    .order-status-info{
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 12px;
+    }
+    .common-btn {
+        width: 88px;
+        text-align: center;
+        height: 30px;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 12px;
+    }
+    .addremark_text{
+        color: #18bc9c;
+        cursor: pointer;
+    }
+    .order_part_right{
+        padding-top:50px;
+    }
+    .order-msg-center{
+        padding: 42px 62px;
+    }
+    .tip_info p{
+        display: inline-block;
+        vertical-align: top;
+        color: #999;
+        white-space: normal;
+        max-width: 85%;
+    }
+    .tip_info>div{
+        white-space: nowrap;
+    }
+    .tip_info{
+        padding: 10px 20px;
+    }
+    .order_msg_cir{
+        width: 38px;
+        height:38px;
+        margin:0 auto;
+        border: 4px solid #fff;
+        border-radius: 50px;
+        background-color: #18bc9c;
+        display: none;
+        position: relative;
+        z-index: 20;
+        text-align: center;
+        line-height: 38px;
+    }
+    .order_msg_cir span{
+        transform: scaleX(1.5);
+    }
+    .order_msg_num{
+        width: 38px;
+        height:38px;
+        margin:0 auto;
+        border: 4px solid #fff;
+        border-radius: 50px;
+        background-color: #eee;
+        color: #fff;
+        position: relative;
+        z-index: 20;
+        text-align: center;
+        line-height: 38px;
+    }
+    .order-msg-center p{
+        margin-bottom:0;
+    }
+    .order-msg-line{
+        left: 50%;
+        right: -50%;
+        top:18px;
+        height:2px;
+        background-color: #C0C4CC;
+        position: absolute;
+        width: 80%;
+    }
+    .pr{
+        position: relative;
+    }
+    .order-msg-center>div>div:nth-last-child(1) .order-msg-line{
+        display: none;
+    }
+    .ischeck .order_msg_num{
+        display: none;
+    }
+    .ischeck .order_msg_cir,.ischeck .order_msg_cir .order-msg-line{
+        display: block;
+        background-color: #18bc9c;
+        color: #ffffff;
+    }
+    .order_pay_block{
+        font-size:12px;
+        color: #666;
+    }
+    .order_pay_block p span{
+        width: 54px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .order_pay_block{
+        background-color: #f8f8f8;
+        border: 2px solid #F0F0F0;
+        margin-top: 14px;
+        margin-bottom: 12px;
+    }
+    .order_pay_block>div{
+        padding:20px 0 20px 20px;
+    }
+    .headerImg{
+        display: inline-block;
+        vertical-align: middle;
+        width: 54px;
+        height:54px;
+        margin-right: 20px;
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+    .table_content{
+        width:100%;
+        overflow-x: scroll;
+    }
+    .table_content table{
+        /*width:1500px;*/
+        vertical-align: middle;
+    }
+    .table_content td{
+        padding: 12px 8px!important;
+        vertical-align: middle!important;
+        font-size: 12px;
+        color: #666;
+        text-align: center;
+    }
+    .shop_text{
+        text-align: left;
+    }
+    .shop_text img{
+        width: 50px;
+        height:50px;
+        margin-right: 14px;
+        display: block;
+        float: left;
+    }
+    .shop_text>div{
+        width: 200px;
+    }
+    .address_text>div{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .address_text{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .address_text p{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .order_pay_block .form-inline{
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 5px;
+    }
+    .plr12{padding: 0 12px;}
+    /*.order_part_right*/
+    /* .part1{
+
+
+    } */
+    .order_part_right {padding-top: 28px;}
+    .part1 span{padding-right: 15px;}
+    .mb10{margin-bottom: 10px;}
+    .mb18{margin-bottom: 18px;}
+    .fs14{font-size: 14px;}
+    .flex-box{display: flex;align-items: center;}
+    .flex-wrap{display: flex;flex-wrap: wrap;}
+    .imgs1{width: 200px;height: 200px;display: block;object-fit: cover;margin-right: 10px;margin-left: 10px;}
+    .order_pay_block>div {
+        padding: 8px 0 8px 20px;
+    }
+    .pl15{padding-left: 18px!important;}
+    .pr15{padding-right: 18px!important;}
+    .order_pay_block>table{
+        width: 100%;
+        background: #fff;
+        margin-top: 10px;
+    }
+    .title{
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+    }
+    .title2{
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+    }
+    .flex-1{flex: 1;overflow: hidden;}
+    .fs18{font-size: 18px;}
+    .order_part_left {
+        padding: 20px 12px 0 31px;
+    }
+</style>
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+
+    <div class="order-title">
+    </div>
+    <div class="order_block">
+        <div class="order_part_top">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 order_part_left">
+                    <div class=" part1 mb18 flex-box">
+                        <div class="flex-1">退款人: {$row.user.nickname ?? ''}</div>
+                        <div class="flex-1">退款人电话: {$row.user.mobile ?? ''}</div>
+                    </div>
+                    <p class="order-status-tip">{$statusList[$row.status]|htmlentities}</p>
+                    <div class=" part1 mb18 flex-box">
+                        <div class="flex-1">购买价格: ￥ {$row.pay_fee|htmlentities}</div>
+                    </div>
+
+                    <div class=" part1 mb10 flex-box">
+                        <div>可退款金额:</div>
+                        <div class="flex-wrap">
+                            <div class="flex-1">￥ {$refund_money|htmlentities}</div>
+                        </div>
+                    </div>
+                    <div class=" part1 mb10 flex-box" style="color: red;"><h6>可退款金额是用=支付金额 - 单个服务原价格 * 已使用次数</h6></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="order_pay_block " style="margin-left: 0;margin-right: 0">
+        <div class="flex-box">
+            <div class="flex-1 fs13">订单号：{$row['ordering']['order_no']|htmlentities}</div>
+            <div class="flex-1 fs13">订单金额：{$row['ordering']['pay_fee']|htmlentities}</div>
+            <div class="flex-1 fs13">下单时间：{$row['ordering']['createtime']|datetime|htmlentities}</div>
+        </div>
+        <table class="table table-condensed table-hover">
+            <thead>
+            <td class="pl15">服务名-规格</td>
+            <td>价格（元）</td>
+            <td class="pr15">会员价格（元）</td>
+            <td class="pr15">总次数</td>
+            <td class="pr15">剩余次数</td>
+            </thead>
+            <tbody>
+            {volist name="row.package_service" id="vo"}
+            <tr>
+                <td>
+                    <div class="shop_text pl15">
+                        <img src="{:cdnurl($vo.service_image,true)}" alt="">
+                        <div>
+                            <p>{$vo.service_name|htmlentities}-{$vo.service_price_name|htmlentities}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>￥ {$vo.salesprice|htmlentities}</td>
+                <td>￥ {$vo.vip_price|htmlentities}</td>
+                <td class="pr15">{$vo.total_count|htmlentities}</td>
+                <td class="pr15">{$vo.stock|htmlentities}</td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+    </div>
+
+    {if $row.status == 'ing' && $refund_money>0}
+    <div class="form-group">
+        <label for="c-refund_money" class="control-label col-xs-12 col-sm-2">{:__('可退款金额')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_money" data-rule="required" class="form-control" name="row[refund_money]" type="text"
+                   value="{$refund_money|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('原因')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-reason" data-rule="required" class="form-control" name="row[reason]" rows="8"></textarea>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+    {/if}
+</form>

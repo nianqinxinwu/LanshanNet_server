@@ -1,0 +1,127 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    {if $brand}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Shop_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-shop_id" data-rule="required" min="0" data-source="xiluxc/shop/selectpage"
+                   class="form-control selectpage"
+                   name="row[shop_id]" type="text" value="">
+        </div>
+    </div>
+    {else /}
+    <input id="c-shop_id" data-rule="required" min="0" class="form-control" name="row[shop_id]" type="hidden"
+           value="{$shop.id|htmlentities}">
+    {/if}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('使用时间')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-daterange" data-rule="required" autocomplete="off" class="form-control datetimerange2"
+                   data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[daterange]"
+                   type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Max_count')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-max_count" data-rule="required" min="0" class="form-control" name="row[max_count]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('At_least')}:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-at_least" data-rule="required" class="form-control" name="row[at_least]" type="number" value="0">
+        </div>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Money')}:</label>
+        <div class="col-xs-12 col-sm-3">
+            <input id="c-money" data-rule="required" class="form-control" name="row[money]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Freight_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select  id="c-freight_type" data-rule="required" min="0" class="form-control selectpicker" name="row[freight_type]">
+                {foreach name="freightTypeList" item="vo"}
+                    <option value="{$key|htmlentities}" {in name="key" value="1"}selected{/in}>{$vo|htmlentities}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+                {foreach name="statusList" item="vo"}
+                <label for="row[status]-{$key|htmlentities}"><input id="row[status]-{$key|htmlentities}" name="row[status]" type="radio" value="{$key|htmlentities}" {in name="key" value="normal"}checked{/in} /> {$vo|htmlentities}</label>
+                {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Range_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio c-range_type">
+            {foreach name="rangeTypeList" item="vo"}
+            <label for="row[range_type]-{$key|htmlentities}"><input id="row[range_type]-{$key|htmlentities}" name="row[range_type]" type="radio" value="{$key|htmlentities}" {in name="key" value="1"}checked{/in} /> {$vo|htmlentities}</label>
+            {/foreach}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Range_status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio c-range_status">
+                {foreach name="rangeStatusList" item="vo"}
+                <label for="row[range_status]-{$key|htmlentities}"><input id="row[range_status]-{$key|htmlentities}" name="row[range_status]" type="radio" value="{$key|htmlentities}" {in name="key" value="1"}checked{/in} /> {$vo|htmlentities}</label>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+    <div class="hide" id="range-key">
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2"></label>
+            <div class="col-xs-12 col-sm-8">
+                <div class="input-group">
+                    <span><button type="button" class="btn btn-primary btn-choose" ><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('')}</label>
+            <div class="col-xs-12 col-sm-8">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th style="text-align: left;width:20%">缩略图</th>
+                        <th style="text-align: left;width:50%">名称</th>
+                        <th style="text-align: left;width: 30%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>
