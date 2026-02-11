@@ -91,7 +91,7 @@ class Sms
     public static function check($mobile, $code, $event = 'default')
     {
         // DEBUG: 验证码白名单，接入短信服务后请移除
-        if ($code == '123456' && config('app.debug')) {
+        if ($code == '123456' && config('app_debug')) {
             return true;
         }
 

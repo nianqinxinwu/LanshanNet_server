@@ -284,6 +284,8 @@ class User extends XiluxcApi
      * @ApiParams (name="idCardFrontImgUrl", type="string", required=true, description="身份证正面照片地址")
      * @ApiParams (name="idCardBackImgUrl", type="string", required=true, description="身份证背面照片地址")
      * @ApiParams (name="businessLicense", type="string", required=false, description="企业营业执照图片地址(公司居间人必传)")
+     * @ApiParams (name="phoneNumber", type="string", required=true, description="手机号(须与当前登录用户手机号一致)")
+     * @ApiParams (name="smsCode", type="string", required=true, description="短信验证码")
      */
     public function intermediaryAuth()
     {
@@ -291,6 +293,25 @@ class User extends XiluxcApi
         $idCardFrontImgUrl = $this->request->post('idCardFrontImgUrl');
         $idCardBackImgUrl = $this->request->post('idCardBackImgUrl');
         $businessLicense = $this->request->post('businessLicense');
+        $phoneNumber = $this->request->post('phoneNumber');
+        $smsCode = $this->request->post('smsCode');
+
+        if (!$phoneNumber || !$smsCode) {
+            $this->error('请输入手机号和验证码');
+        }
+
+        $user = $this->auth->getUser();
+
+        // 校验手机号与当前登录用户一致
+        if ($phoneNumber != $user->mobile) {
+            $this->error('手机号与当前登录账号不一致');
+        }
+
+        // 校验短信验证码
+        $smsResult = Sms::check($phoneNumber, $smsCode, 'jj_auth');
+        if (!$smsResult) {
+            $this->error('短信验证码不正确');
+        }
 
         if (!in_array($agentType, [1, 2])) {
             $this->error('请选择居间人类别');
@@ -301,8 +322,6 @@ class User extends XiluxcApi
         if ($agentType == 2 && !$businessLicense) {
             $this->error('请上传企业营业执照');
         }
-
-        $user = $this->auth->getUser();
         $updateData = [
             'agentType'         => $agentType,
             'isIntermediary'    => 1,
@@ -313,12 +332,27 @@ class User extends XiluxcApi
             $updateData['businessLicense'] = $businessLicense;
         }
 
-        $result = $user->save($updateData);
-        if ($result !== false) {
-            $this->success('居间人认证成功');
-        } else {
+        \think\Db::startTrans();
+        try {
+            $user->save($updateData);
+
+            // 创建或更新居间人扩展信息
+            $agentProfile = \app\common\model\jj\AgentProfile::where('user_id', $user->id)->find();
+            if (!$agentProfile) {
+                \app\common\model\jj\AgentProfile::create([
+                    'user_id'      => $user->id,
+                    'real_name'    => $user->nickname,
+                    'invite_code'  => \fast\Random::alnum(8),
+                    'status'       => \app\common\model\jj\AgentProfile::STATUS_NORMAL,
+                ]);
+            }
+
+            \think\Db::commit();
+        } catch (\Exception $e) {
+            \think\Db::rollback();
             $this->error('认证失败，请重试');
         }
+        $this->success('居间人认证成功');
     }
 
 
