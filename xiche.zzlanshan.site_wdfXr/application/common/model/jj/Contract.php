@@ -21,11 +21,15 @@ class Contract extends Model
     const STATUS_PENDING  = 0;
     const STATUS_UPLOADED = 1;
     const STATUS_EXPIRED  = 2;
+    const STATUS_APPROVED = 3;
+    const STATUS_REJECTED = 4;
 
     const STATUS_MAP = [
         0 => '待上传',
         1 => '已上传',
         2 => '已过期',
+        3 => '已审核通过',
+        4 => '已驳回',
     ];
 
     public function getStatusTextAttr($value, $data)

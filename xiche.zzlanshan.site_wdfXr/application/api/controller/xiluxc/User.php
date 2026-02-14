@@ -325,11 +325,11 @@ class User extends XiluxcApi
         $updateData = [
             'agentType'         => $agentType,
             'isIntermediary'    => 1,
-            'idCardFrontImgUrl' => $idCardFrontImgUrl,
-            'idCardBackImgUrl'  => $idCardBackImgUrl,
+            'idCardFrontImgUrl' => $this->normalizeUrl($idCardFrontImgUrl),
+            'idCardBackImgUrl'  => $this->normalizeUrl($idCardBackImgUrl),
         ];
         if ($agentType == 2) {
-            $updateData['businessLicense'] = $businessLicense;
+            $updateData['businessLicense'] = $this->normalizeUrl($businessLicense);
         }
 
         \think\Db::startTrans();
@@ -407,7 +407,7 @@ class User extends XiluxcApi
             $avatar = $this->request->post('avatar', '', 'trim,strip_tags,htmlspecialchars');
             $gender = $this->request->post('gender', '');
             $user->nickname = $nickname;
-            $user->avatar = $avatar;
+            $user->avatar = $this->normalizeUrl($avatar);
             $user->gender = $gender;
             $user->allowField(['avatar','nickname','gender'])->save();
 

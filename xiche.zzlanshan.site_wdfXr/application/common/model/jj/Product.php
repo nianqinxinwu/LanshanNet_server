@@ -37,6 +37,11 @@ class Product extends Model
         return $value ? cdnurl($value, true) : '';
     }
 
+    public function getInspectionReportUrlAttr($value)
+    {
+        return $value ? cdnurl($value, true) : '';
+    }
+
     public function factory()
     {
         return $this->belongsTo(Factory::class, 'factory_id', 'id', [], 'left')->setEagerlyType(0);

@@ -269,7 +269,7 @@ class JjBid extends XiluxcApi
 
             // 创建订单
             $commissionAmount = $quote['commission_amount'] ?: 0;
-            $depositRate = 10;
+            $depositRate = 1; // 固定保证金比例：佣金总额的1%
 
             $order = Order::create([
                 'order_sn'          => Order::generateOrderSn(),

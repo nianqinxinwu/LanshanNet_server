@@ -88,7 +88,7 @@ class JjAgent extends XiluxcApi
                 'credit_score' => $profile['credit_score'],
                 'agent_level'  => $profile['agent_level'],
                 'invite_code'  => $profile['invite_code'],
-                'avatar'       => $this->auth->getUser()['avatar'],
+                'avatar'       => cdnurl($this->auth->getUser()['avatar'], true),
             ],
             'income'      => $income,
             'hexagonData' => $hexagonData,
@@ -114,7 +114,7 @@ class JjAgent extends XiluxcApi
 
         $data = [
             'nickname'       => $user['nickname'],
-            'avatar'         => $user['avatar'],
+            'avatar'         => cdnurl($user['avatar'], true),
             'mobile'         => substr_replace($user['mobile'], '****', 3, 4),
             'roleType'       => $user['roleType'],
             'agentType'      => $user['agentType'],

@@ -18,14 +18,16 @@ class Deposit extends Model
         'pay_status_text',
     ];
 
-    const PAY_STATUS_PENDING  = 0;
-    const PAY_STATUS_PAID     = 1;
-    const PAY_STATUS_REFUNDED = 2;
+    const PAY_STATUS_PENDING      = 0;
+    const PAY_STATUS_PAID         = 1;
+    const PAY_STATUS_REFUNDED     = 2;
+    const PAY_STATUS_COMPENSATED  = 3;
 
     const PAY_STATUS_MAP = [
         0 => '待支付',
         1 => '已支付',
         2 => '已退回',
+        3 => '已赔付',
     ];
 
     public function getPayStatusTextAttr($value, $data)
